@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Target Shooting Game</title>
+<style>
+    body {
+        background: #000000;
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+    }
+    .box {
+        margin-top: 20vh; /* 20% of the viewport height from the top */
+        margin-left: 10vw; /* 10% of the viewport width from the left */
+    }
+    #yes {
+        border: none;
+        width: 15vw; /* 15% of the viewport width */
+        background-color: rgb(240, 33, 33);
+        border-radius: 10px;
+        font-size: 4vw; /* 4% of the viewport width for font size */
+        padding: 2vw; /* 2% of the viewport width for padding */
+    }
+
+    #game-container {
+        color: white;
+        position: relative;
+        width: 80vw; /* 80% of the viewport width */
+        height: 60vh; /* 60% of the viewport height */
+        border: 2px solid #333;
+        margin: 5px auto; /* Center horizontally */
+        overflow: hidden;
+    }
+    
+    #target {
+        position: absolute;
+        left: 40vw; /* 40% of the viewport width from the left */
+        background-color: rgb(0, 89, 255);
+        border: none;
+        width: 15vw; /* 15% of the viewport width */
+        border-radius: 10px;
+        font-size: 4vw; /* 4% of the viewport width for font size */
+        padding: 2vw; /* 2% of the viewport width for padding */
+        cursor: pointer;
+        transition: top 0.5s, left 0.5s;
+    }
+
+    /* Custom dialog box */
+    #custom-dialog {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40vw; /* 40% of the viewport width */
+        height: 50vh; /* 50% of the viewport height */
+        background-color: rgb(4, 67, 83);
+        border: 1px solid rgb(16, 255, 155);
+        border-radius: 5px;
+        padding: 3vw; /* 3% of the viewport width for padding */
+        text-align: center;
+        z-index: 1000;
+    }
+</style>
+</head>
+<body>
+
+<div id="game-container">
+    <div class="box">
+        <h1>YOU ARE SOO CUTE💓</h1>
+        <button id="target">No</button>
+        <button id="yes">Yes</button>
+    </div>
+</div>
+
+<!-- Custom dialog box -->
+<div id="custom-dialog">
+    <p>Ha tum to ho hi cute 🙂. LEKIN TUMHE MALOOM NAHI THA</p>
+</div>
+
+<script>
+    const target = document.getElementById('target');
+    const yesButton = document.getElementById('yes');
+    const noButton = document.getElementById('target');
+    const customDialog = document.getElementById('custom-dialog');
+    
+    function moveTarget() {
+        const maxWidth = window.innerWidth * 0.8; // 80% of the viewport width
+        const maxHeight = window.innerHeight * 0.6; // 60% of the viewport height
+    
+        const randomX = Math.floor(Math.random() * maxWidth);
+        const randomY = Math.floor(Math.random() * maxHeight);
+    
+        target.style.left = randomX + 'px';
+        target.style.top = randomY + 'px';
+    }
+    
+    function showCustomDialog() {
+        customDialog.style.display = 'block';
+        setTimeout(() => {
+            customDialog.style.display = 'none';
+        }, 15000); // Hide the dialog after 15 seconds
+    }
+    
+    yesButton.addEventListener('click', () => {
+        showCustomDialog();
+    });
+    
+    noButton.addEventListener('click', () => {
+        moveTarget();
+    });
+</script>
+</body>
+</html>
